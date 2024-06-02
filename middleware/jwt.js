@@ -1,9 +1,9 @@
 import { jwtVerify, SignJWT } from 'jose';
 import dotenv from 'dotenv/config';
 
-const generateJWTToken = async (email, rol) => {
+const generateJWTToken = async (email, rol, ultimoTeam) => {
     const encoder = new TextEncoder();
-    return new SignJWT({ email: email, rol: rol })
+    return new SignJWT({ email: email, rol: rol, ultimoTeam: ultimoTeam })
         .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
         .setIssuedAt()
         .setExpirationTime('3h')

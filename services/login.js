@@ -21,7 +21,7 @@ const createToken = async (req, res) => {
         return res.status(401).send({ status: 401, message: 'Usuario no encontrado' });
     }
 
-    const jwtToken = await generateJWTToken(user.email, user.rol);
+    const jwtToken = await generateJWTToken(user.email, user.rol, user.ultimoTeam);
 
     res.status(200).send({ status: 200, message: jwtToken })
 };
@@ -44,4 +44,18 @@ const verifyToken = async (req, token) => {
     }
 };
 
-export { createToken, verifyToken };
+const verifyTokenRegister = async (token) => {
+    try {
+        const encoder = new TextEncoder();
+        const jwtData = await jwtVerify(
+            token,
+            encoder.encode(process.env.JWT_LOGIN)
+        )
+        let result = await userCollection.findOne({ email: jwtData.payload.email })
+        return result
+    } catch (error) {
+        return false;
+    }
+};
+
+export { createToken, verifyToken, verifyTokenRegister };

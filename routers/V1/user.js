@@ -11,6 +11,12 @@ router.use(passportHelper.authenticate('bearer', {session: false}));
 
 router.get("/", version({
     '1.0.0': User.getUser,
+    '1.0.1': User.getLinkReferir
 }));
+
+router.post("/", version({
+    '1.0.0': User.postFinallyDateUser
+}));
+
 
 export { router };
