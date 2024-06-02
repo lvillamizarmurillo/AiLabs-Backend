@@ -176,71 +176,71 @@ db.fee.insertMany([
     idTradingAccount: "70030019",
     idSuscription: "79009",
     fee: 1000,
-    date: "2024-05-30",
+    date: new Date("2024-05-30"),
     status: "pendiente"
   },
   {
     idTradingAccount: "00030019",
     idSuscription: "09009",
     fee: 1000,
-    date: "2024-05-29",
+    date: new Date("2024-05-29"),
     status: "pendiente"
   },
   {
     idTradingAccount: "80030019",
     idSuscription: "89009",
     fee: 500,
-    date: "2024-05-30",
+    date: new Date("2024-05-30"),
     status: "pendiente"
   },
   {
     idTradingAccount: "10030019",
     idSuscription: "19009",
     fee: 1000,
-    date: "2024-05-28",
+    date: new Date("2024-05-28"),
     status: "pendiente"
   },
   {
     idTradingAccount: "20030019",
     idSuscription: "29009",
     fee: 1000,
-    date: "2024-05-27",
+    date: new Date("2024-05-27"),
     status: "pendiente"
   },
   {
     idTradingAccount: "30030019",
     idSuscription: "39009",
     fee: 1000,
-    date: "2024-05-26",
+    date: new Date("2024-05-26"),
     status: "pendiente"
   },
   {
     idTradingAccount: "40030019",
     idSuscription: "49009",
     fee: 1000,
-    date: "2024-05-25",
+    date: new Date("2024-05-25"),
     status: "pendiente"
   },
   {
     idTradingAccount: "50030019",
     idSuscription: "59009",
     fee: 1000,
-    date: "2024-05-24",
+    date: new Date("2024-05-24"),
     status: "pendiente"
   },
   {
     idTradingAccount: "60030019",
     idSuscription: "69009",
     fee: 1000,
-    date: "2024-05-23",
+    date: new Date("2024-05-23"),
     status: "pendiente"
   },
   {
     idTradingAccount: "60030019",
     idSuscription: "69009",
     fee: 1000,
-    date: "2024-04-25",
+    date: new Date("2024-04-25"),
     status: "pagado",
-    datePago: "2024-04-27"
+    datePago: new Date("2024-04-27")
   }
 ]);

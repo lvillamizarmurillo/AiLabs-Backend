@@ -35,7 +35,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPostUser, 'postUser');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         const userComplete = {
             ...req.body,
@@ -65,7 +65,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPostUser, 'postFinallyUser');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         await user.updateOne({ email:result.email }, {$set: { status: "activo", idTradingAccount:  dataPostUser.idTradingAccount, idSuscription: dataPostUser.idSuscription }});
 
@@ -83,7 +83,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPutPassword, 'putPasswordUser');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         await user.updateOne({ email:result.email }, {$set: { password: dataPutPassword.password}});
 
@@ -101,7 +101,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPutIdiBinance, 'putIdBinanceUser');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         await user.updateOne({ email:result.email }, {$set: { idBinance: dataPutIdiBinance.idBinance}});
 
@@ -119,7 +119,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPutFeeAccount, 'putDataUserFeeAccount');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         await user.updateOne({ email:result.email }, {$set: { idTradingAccount: dataPutFeeAccount.idTradingAccount,idSuscription: dataPutFeeAccount.idSuscription }});
 
@@ -137,7 +137,7 @@ export default class User{
 
         const { error } = ValidationsUser.validateUser(dataPutInfoUser, 'putPersonalInfoUser');
 
-        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(', ') });
+        if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
         await user.updateOne({ email:result.email }, {$set: { nombres: dataPutInfoUser.nombres, apellidos: dataPutInfoUser.apellidos, numero: dataPutInfoUser.numero }});
 

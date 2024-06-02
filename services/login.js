@@ -13,7 +13,7 @@ const createToken = async (req, res) => {
 
     const { error } = ValidationsLogin.validateRegistration(dateAdminLogin,'loginAdmin');
 
-    if (error) return res.status(400).send({status:400, message:error.details.map(err => err.message).join(', ')});
+    if (error) return res.status(400).send({status:400, message:error.details.map(err => err.message).join(' ')});
 
     const user = await userCollection.findOne({ email:dateAdminLogin.email, password:dateAdminLogin.password });
 
