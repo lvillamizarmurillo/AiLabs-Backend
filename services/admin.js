@@ -156,7 +156,7 @@ export default class Admin {
         const bulkUserOps = dataUsers.map(update => ({
             updateOne: {
               filter: { _id: update._id },
-              update: { $inc: { totalFee: 0 } }
+              update: { $set: { totalReferidos: 0 } }
             }
         }));
 
