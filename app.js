@@ -11,7 +11,7 @@ const config = {
 };
 
 const corsOptions = {
-  origin: process.env.HOST,
+  origin: `http://${process.env.HOST_FRONTEND}:${process.env.PORT_FRONTEND}`,
 };
 
 const app = express();
