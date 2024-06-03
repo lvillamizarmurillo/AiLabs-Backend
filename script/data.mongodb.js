@@ -11,8 +11,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "00030019",
     idSuscription: "09009"
@@ -28,8 +27,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "10030019",
     idSuscription: "19009"
@@ -45,8 +43,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "20030019",
     idSuscription: "29009"
@@ -62,8 +59,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "30030019",
     idSuscription: "39009"
@@ -79,8 +75,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "40030019",
     idSuscription: "49009"
@@ -96,8 +91,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "50030019",
     idSuscription: "59009"
@@ -113,8 +107,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: false,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "60030019",
     idSuscription: "69009"
@@ -130,8 +123,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 0,
-    totalReferidos: 0, 
-    ultimoTeam: true,
+    totalReferidos: 0,
     rol: "user",
     idTradingAccount: "70030019",
     idSuscription: "79009"
@@ -147,8 +139,7 @@ db.user.insertMany([
     status: "activo",
     idBinance: "131074772",
     totalFee: 500,
-    totalReferidos: 0, 
-    ultimoTeam: true,
+    totalReferidos: 0,    
     rol: "user",
     idTradingAccount: "80030019",
     idSuscription: "89009"
@@ -163,7 +154,6 @@ db.user.insertMany([
     idBinance: "131074772",
     totalFee: 0,
     totalReferidos: 0,
-    ultimoTeam: false,
     rol: "admin",
     idTradingAccount: "000030019",
     idSuscription: "009009"
