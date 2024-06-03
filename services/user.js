@@ -43,13 +43,10 @@ export default class User{
             status: "inactivo",
             totalFee: 0,
             totalReferidos: 0,
-            rol: "user",
-            ultimoTeam: true
+            rol: "user"
         }
 
         await user.insertOne(userComplete);
-
-        if(result.ultimoTeam == true) {await user.updateOne({ email:result.email }, {$set: { ultimoTeam: false }})};
 
         res.status(200).json({ status: 200, message: 'Usuario registrado con éxito.' });
     }
