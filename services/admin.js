@@ -165,6 +165,48 @@ export default class Admin {
         res.status(200).json({status: 200, message: "Se actualizaron los pagos para cada usuario con éxito"});
     }
 
+    static async postPayForReferUser(req, res) {
+        if (!req.rateLimit) return;
+
+        const dataUserFinalTeam = await user.aggregate([
+            {
+                $match: { rol: "user" } 
+            }
+        ]).toArray();
+
+        const updateUserFeeAndReferidos = async (emailReferido, amount) => {
+            let currentEmail = emailReferido;
+            for (let level = 0; level < 5; level++) {
+                if (currentEmail === "admin@gmail.com") {
+                    await user.updateOne({ email: currentEmail }, { $inc: { totalReferidos: amount } });
+                } else {
+                    const userData = await user.findOne({ email: currentEmail });
+                    if (!userData) break;
+                    await user.updateOne({ email: currentEmail }, { $inc: { totalReferidos: amount } });
+                    currentEmail = userData.emailReferido;
+                }
+            }
+        };
+
+        for (let user of dataUserFinalTeam) {
+            const totalFeeUser = user.totalFee;
+            const totalReferFiveLevels = totalFeeUser * 0.20;
+            await updateUserFeeAndReferidos(user.emailReferido, totalReferFiveLevels);
+        }
+
+        const userData = await user.find({}).toArray();
+        const bulkUserOps = userData.map(update => ({
+            updateOne: {
+                filter: { _id: update._id },
+                update: { $set: { totalFee: 0 } }
+            }
+        }));
+        await user.bulkWrite(bulkUserOps);
+
+        res.status(200).json({ status: 200, message: "Datos de la red actualizados con éxito" });
+    }
+
+
     static async deleteFeeUser(req,res) {
         if (!req.rateLimit) return;
 

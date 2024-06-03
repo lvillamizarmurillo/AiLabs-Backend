@@ -21,7 +21,9 @@ router.post("/", version({
     '1.0.1': Admin.postFeeForDatePendiente,
     '1.0.2': Admin.postFeeForDatePagado,
     '1.0.3': Admin.postNewsFees,
-    '1.0.4': Admin.postActualizationUsers
+    '1.0.4': Admin.postActualizationUsers,
+    "1.0.5": Admin.postPayUsers,
+    "1.0.6": Admin.postPayForReferUser
 }));
 
 router.delete("/", version({
