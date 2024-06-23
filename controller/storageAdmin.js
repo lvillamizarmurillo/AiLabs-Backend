@@ -33,6 +33,10 @@ class ValidationsAdmin {
               'number.base': 'La tarifa debe ser un número.',
               'any.required': 'La tarifa es un campo obligatorio, verifica el campo fee.'
             }),
+            equidad: Joi.number().required().messages({
+              'number.base': 'La equidad debe ser un número.',
+              'any.required': 'La equidad es un campo obligatorio, verifica el campo equidad.'
+            }),
             date: Joi.date().iso().required().messages({
               'date.base': 'La fecha debe ser una fecha válida.',
               'date.format': 'La fecha debe estar en el formato "YYYY-MM-DD".',

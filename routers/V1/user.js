@@ -20,7 +20,7 @@ router.post("/", version({
 
 router.put("/", version({
     '1.0.0': User.putPasswordUser,
-    '1.0.1': User.putidBinanceUser,
+    '1.0.1': User.putidBinanceWalletUser,
     '1.0.2': User.putDataUserFeeAccount,
     '1.0.3': User.putPersonalInfoUser
 }));

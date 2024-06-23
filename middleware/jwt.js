@@ -1,4 +1,4 @@
-import { jwtVerify, SignJWT } from 'jose';
+import { SignJWT } from 'jose';
 import dotenv from 'dotenv/config';
 
 const generateJWTToken = async (email, rol, ultimoTeam) => {

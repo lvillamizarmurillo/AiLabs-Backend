@@ -4,7 +4,7 @@ import ValidationsLogin from '../controller/storageLogin.js';
 import dotenv from 'dotenv/config';
 import { jwtVerify, SignJWT } from 'jose';
 
-const userCollection = await collectionGen('user');
+const userCollection = await collectionGen('users');
 
 const createToken = async (req, res) => {
     if (!req.rateLimit) return;

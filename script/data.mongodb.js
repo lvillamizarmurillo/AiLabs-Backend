@@ -1,236 +1,386 @@
 use('aiLabs');
-db.user.insertMany([
+db.users.insertMany([
   {
-    username: "lvillamizarmurillo",
-    nombres: "Ludwing Santiago",
-    apellidos: "Villamizar Murillo",
-    email: "lvillamizarmurillo@gmail.com",
+    username: "MasterAccount",
+    email: "ailabsbypeacock@gmail.com",
     password: "123",
-    numero: "3042259419",
-    emailReferido: "admin@gmail.com",
+    numero: "123456789",
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "00030019",
-    idSuscription: "09009"
+    rol: "admin"
   },
   {
     username: "user1",
-    nombres: "user1",
-    apellidos: "user1",
+    nombres: "Nombre1",
+    apellidos: "Apellido1",
     email: "user1@gmail.com",
     password: "123",
-    numero: "3042259419",
-    emailReferido: "lvillamizarmurillo@gmail.com",
+    numero: "123456789",
+    emailReferido: "ailabsbypeacock@gmail.com",
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "10030019",
-    idSuscription: "19009"
+    rol: "user"
   },
   {
     username: "user2",
-    nombres: "user2",
-    apellidos: "user2",
+    nombres: "Nombre2",
+    apellidos: "Apellido2",
     email: "user2@gmail.com",
-    password: "123",
-    numero: "3042259419",
+    password: "456",
+    numero: "987654321",
     emailReferido: "user1@gmail.com",
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "20030019",
-    idSuscription: "29009"
+    rol: "user"
   },
   {
     username: "user3",
-    nombres: "user3",
-    apellidos: "user3",
+    nombres: "Nombre3",
+    apellidos: "Apellido3",
     email: "user3@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user2@gmail.com",
+    password: "789",
+    numero: "987123456",
+    emailReferido: "user1@gmail.com", // Referido por user1 (user)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "30030019",
-    idSuscription: "39009"
+    rol: "user"
   },
   {
     username: "user4",
-    nombres: "user4",
-    apellidos: "user4",
+    nombres: "Nombre4",
+    apellidos: "Apellido4",
     email: "user4@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user3@gmail.com",
+    password: "abc",
+    numero: "111222333",
+    emailReferido: "user3@gmail.com", // Referido por user3 (user)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "40030019",
-    idSuscription: "49009"
+    rol: "user"
   },
   {
     username: "user5",
-    nombres: "user5",
-    apellidos: "user5",
+    nombres: "Nombre5",
+    apellidos: "Apellido5",
     email: "user5@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user4@gmail.com",
+    password: "def",
+    numero: "444555666",
+    emailReferido: "user2@gmail.com", // Referido por user2 (user)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "50030019",
-    idSuscription: "59009"
+    rol: "user"
   },
   {
     username: "user6",
-    nombres: "user6",
-    apellidos: "user6",
+    nombres: "Nombre6",
+    apellidos: "Apellido6",
     email: "user6@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user5@gmail.com",
+    password: "ghi",
+    numero: "777888999",
+    emailReferido: "user1@gmail.com", // Referido por user1 (user)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "60030019",
-    idSuscription: "69009"
+    rol: "user"
   },
   {
     username: "user7",
-    nombres: "user7",
-    apellidos: "user7",
+    nombres: "Nombre7",
+    apellidos: "Apellido7",
     email: "user7@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user6@gmail.com",
+    password: "jkl",
+    numero: "1234567890",
+    emailReferido: "user6@gmail.com", // Referido por Admin (admin)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "user",
-    idTradingAccount: "70030019",
-    idSuscription: "79009"
+    rol: "user"
   },
   {
     username: "user8",
-    nombres: "user8",
-    apellidos: "user8",
+    nombres: "Nombre8",
+    apellidos: "Apellido8",
     email: "user8@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    emailReferido: "user6@gmail.com",
+    password: "mno",
+    numero: "0987654321",
+    emailReferido: "user7@gmail.com", // Referido por user7 (user)
     status: "activo",
-    idBinance: "131074772",
-    totalFee: 500,
-    totalReferidos: 0,    
-    rol: "user",
-    idTradingAccount: "80030019",
-    idSuscription: "89009"
+    rol: "user"
   },
   {
-    username: "admin",
-    nombres: "admin",
-    apellidos: "admin",
-    email: "admin@gmail.com",
-    password: "123",
-    numero: "3042259419",
-    idBinance: "131074772",
-    totalFee: 0,
-    totalReferidos: 0,
-    rol: "admin",
-    idTradingAccount: "000030019",
-    idSuscription: "009009"
+    username: "user9",
+    nombres: "Nombre9",
+    apellidos: "Apellido9",
+    email: "user9@gmail.com",
+    password: "mno",
+    numero: "85412544",
+    emailReferido: "user8@gmail.com", // Referido por user7 (user)
+    status: "activo",
+    rol: "user"
+  }
+]);
+
+// Ajustar colección de wallets para los nuevos usuarios si es necesario
+use('aiLabs');
+db.wallets.insertMany([
+  {
+    email: "ailabsbypeacock@gmail.com",
+    idBinance: "999909990",
+    walletUSDTBEP20: "billeteraParaPagosAdmin1"
+  },
+  {
+    email: "user1@gmail.com",
+    idBinance: "999999999",
+    walletUSDTBEP20: "billeteraParaPagosUser1"
+  },
+  {
+    email: "user2@gmail.com",
+    idBinance: "888888888",
+    walletUSDTBEP20: "billeteraParaPagosUser2"
+  },
+  {
+    email: "user3@gmail.com",
+    idBinance: "777777777",
+    walletUSDTBEP20: "billeteraParaPagosUser3"
+  },
+  {
+    email: "user4@gmail.com",
+    idBinance: "444444444",
+    walletUSDTBEP20: "billeteraParaPagosUser4"
+  },
+  {
+    email: "user5@gmail.com",
+    idBinance: "555555555",
+    walletUSDTBEP20: "billeteraParaPagosUser5"
+  },
+  {
+    email: "user6@gmail.com",
+    idBinance: "666666666",
+    walletUSDTBEP20: "billeteraParaPagosUser6"
+  },
+  {
+    email: "user7@gmail.com",
+    idBinance: "777777777",
+    walletUSDTBEP20: "billeteraParaPagosUser7"
+  },
+  {
+    email: "user8@gmail.com",
+    idBinance: "888888888",
+    walletUSDTBEP20: "billeteraParaPagosUser8"
+  },
+  {
+    email: "user9@gmail.com",
+    idBinance: "888888889",
+    walletUSDTBEP20: "billeteraParaPagosUser9"
+  }
+]);
+
+// Ajustar colección de cuentas de trading para los nuevos usuarios si es necesario
+use('aiLabs');
+db.tradingAccounts.insertMany([
+  {
+    email: "ailabsbypeacock@gmail.com",
+    idTradingAccount: "11101110",
+    idSuscription: "1100",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 0
+  },
+  {
+    email: "user1@gmail.com",
+    idTradingAccount: "11111111",
+    idSuscription: "111",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 4
+  },
+  {
+    email: "user2@gmail.com",
+    idTradingAccount: "22222222",
+    idSuscription: "222",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 1
+  },
+  {
+    email: "user3@gmail.com",
+    idTradingAccount: "33333333",
+    idSuscription: "333",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 1
+  },
+  {
+    email: "user4@gmail.com",
+    idTradingAccount: "44444444",
+    idSuscription: "444",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 0
+  },
+  {
+    email: "user5@gmail.com",
+    idTradingAccount: "55555555",
+    idSuscription: "555",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 0
+  },
+  {
+    email: "user6@gmail.com",
+    idTradingAccount: "66666666",
+    idSuscription: "666",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 1
+  },
+  {
+    email: "user7@gmail.com",
+    idTradingAccount: "77777777",
+    idSuscription: "777",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 1
+  },
+  {
+    email: "user8@gmail.com",
+    idTradingAccount: "88888888",
+    idSuscription: "888",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 0
+  },
+  {
+    email: "user9@gmail.com",
+    idTradingAccount: "88888899",
+    idSuscription: "899",
+    capitalOperativo: 1000,
+    rentabilidadSemanal: 200,
+    rentabilidadAcumulada: 200,
+    carteraDirecta: 0,
+    carteraEquipo: 0,
+    acumuladoCartera: 0,
+    gananciaSemanal: 0,
+    gananciaTotal: 0,
+    totalEquipo: 0
   }
 ]);
 
 use('aiLabs');
 db.fee.insertMany([
   {
-    idTradingAccount: "70030019",
-    idSuscription: "79009",
-    fee: 1000,
-    date: new Date("2024-05-30"),
+    idTradingAccount: "11111111",
+    idSuscription: "111",
+    fee: 200,
+    equidad: 400,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "00030019",
-    idSuscription: "09009",
-    fee: 1000,
-    date: new Date("2024-05-29"),
+    idTradingAccount: "22222222",
+    idSuscription: "222",
+    fee: 300,
+    equidad: 500,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "80030019",
-    idSuscription: "89009",
-    fee: 500,
-    date: new Date("2024-05-30"),
+    idTradingAccount: "33333333",
+    idSuscription: "333",
+    fee: 100,
+    equidad: 200,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "10030019",
-    idSuscription: "19009",
-    fee: 1000,
-    date: new Date("2024-05-28"),
+    idTradingAccount: "44444444",
+    idSuscription: "444",
+    fee: 100,
+    equidad: 200,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "20030019",
-    idSuscription: "29009",
-    fee: 1000,
-    date: new Date("2024-05-27"),
+    idTradingAccount: "55555555",
+    idSuscription: "555",
+    fee: 100,
+    equidad: 200,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "30030019",
-    idSuscription: "39009",
-    fee: 1000,
-    date: new Date("2024-05-26"),
+    idTradingAccount: "66666666",
+    idSuscription: "666",
+    fee: 100,
+    equidad: 200,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "40030019",
-    idSuscription: "49009",
-    fee: 1000,
-    date: new Date("2024-05-25"),
+    idTradingAccount: "77777777",
+    idSuscription: "777",
+    fee: 100,
+    equidad: 200,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "50030019",
-    idSuscription: "59009",
-    fee: 1000,
-    date: new Date("2024-05-24"),
+    idTradingAccount: "88888888",
+    idSuscription: "888",
+    fee: 0,
+    equidad: 0,
+    date: new Date(),
     status: "pendiente"
   },
   {
-    idTradingAccount: "60030019",
-    idSuscription: "69009",
-    fee: 1000,
-    date: new Date("2024-05-23"),
+    idTradingAccount: "88888899",
+    idSuscription: "899",
+    fee: 300,
+    equidad: 800,
+    date: new Date(),
     status: "pendiente"
-  },
-  {
-    idTradingAccount: "60030019",
-    idSuscription: "69009",
-    fee: 1000,
-    date: new Date("2024-04-25"),
-    status: "pagado",
-    datePago: new Date("2024-04-27")
   }
 ]);

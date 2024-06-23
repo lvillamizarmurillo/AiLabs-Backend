@@ -3,7 +3,9 @@ import { verifyToken, verifyTokenRegister } from "./login.js";
 import dotenv from 'dotenv/config'
 import ValidationsUser from "../controller/storageUser.js";
 
-const user = await collectionGen('user');
+const user = await collectionGen('users');
+const wallet = await collectionGen('wallets');
+const tradingAccount = await collectionGen('tradingAccounts');
 
 export default class User{
     static async getUser(req,res){
@@ -21,15 +23,11 @@ export default class User{
 
         let tokenUser = req.headers['authorization'].slice(7);
 
-        res.status(200).send({ status: 200, message: tokenUser });
+        res.status(200).send({ status: 200, message: `http://${process.env.HOST}:${process.env.PORT_FRONTEND}/ai-labs/registro/${tokenUser}` });
     }
 
     static async postUser(req,res){
         if (!req.rateLimit) return;
-
-        let result = await verifyTokenRegister(req.params.token);
-
-        if(!result) return res.status(400).json({ status: 400, message: 'Link no funcional, revisa que este bien copiado o no este expirado, en caso de estar expirado tienes que volver a solicitarlo a quien te lo envió.' });
 
         const dataPostUser = req.body;
 
@@ -37,16 +35,45 @@ export default class User{
 
         if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
+        let result = await verifyTokenRegister(req.params.token);
+
+        if(!result) return res.status(400).json({ status: 400, message: 'Link no funcional, revisa que este bien copiado o no este expirado, en caso de estar expirado tienes que volver a solicitarlo a quien te lo envió.' });
+
         const userComplete = {
-            ...req.body,
+            username: req.body.username,
+            nombres: req.body.nombres,
+            apellidos: req.body.apellidos,
+            email: req.body.email,
+            password: req.body.password,
+            numero: req.body.numero,
             emailReferido: result.email,
             status: "inactivo",
-            totalFee: 0,
-            totalReferidos: 0,
             rol: "user"
         }
 
+        const walletComplete = {
+            email: req.body.email,
+            idBinance: req.body.idBinance,
+            walletUSDTBEP20: req.body.walletUSDTBEP20
+        }
+
+        const tradingAccountComplete = {
+            email: req.body.email,
+            capitalOperativo: 0,
+            rentabilidadSemanal: 0,
+            rentabilidadAcumulada: 0,
+            carteraDirecta: 0,
+            carteraEquipo: 0,
+            acumuladoCartera: 0,
+            gananciaSemanal: 0,
+            gananciaTotal: 0,
+            totalEquipo: 0
+        }
+
         await user.insertOne(userComplete);
+        await wallet.insertOne(walletComplete);
+        await tradingAccount.insertOne(tradingAccountComplete);
+        await tradingAccount.updateOne({email:result.email}, {$inc: {totalEquipo: 1}});
 
         res.status(200).json({ status: 200, message: 'Usuario registrado con éxito.' });
     }
@@ -64,7 +91,7 @@ export default class User{
 
         if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
-        await user.updateOne({ email:result.email }, {$set: { status: "activo", idTradingAccount:  dataPostUser.idTradingAccount, idSuscription: dataPostUser.idSuscription }});
+        await tradingAccount.updateOne({ email:result.email }, {$set: { status: "activo", idTradingAccount:  dataPostUser.idTradingAccount, idSuscription: dataPostUser.idSuscription }});
 
         res.status(200).json({ status: 200, message: 'Usuario activo con éxito.' });
     }
@@ -87,7 +114,7 @@ export default class User{
         res.status(200).json({ status: 200, message: 'Se actualizó la contraseña con éxito.' });
     }
 
-    static async putidBinanceUser(req,res){
+    static async putidBinanceWalletUser(req,res){
         if (!req.rateLimit) return;
 
         let tokenUser = req.headers['authorization'].slice(7);
@@ -100,7 +127,7 @@ export default class User{
 
         if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
-        await user.updateOne({ email:result.email }, {$set: { idBinance: dataPutIdiBinance.idBinance}});
+        await wallet.updateOne({ email:result.email }, {$set: { idBinance: dataPutIdiBinance.idBinance, walletUSDTBEP20: dataPutIdiBinance.walletUSDTBEP20}});
 
         res.status(200).json({ status: 200, message: 'Se actualizó el ID de Binance con éxito.' });
     }
@@ -118,7 +145,7 @@ export default class User{
 
         if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
-        await user.updateOne({ email:result.email }, {$set: { idTradingAccount: dataPutFeeAccount.idTradingAccount,idSuscription: dataPutFeeAccount.idSuscription }});
+        await tradingAccount.updateOne({ email:result.email }, {$set: { idTradingAccount: dataPutFeeAccount.idTradingAccount,idSuscription: dataPutFeeAccount.idSuscription }});
 
         res.status(200).json({ status: 200, message: 'Se actualizó el ID de la suscripcion y el ID de la cuenta de trading en Dooprime con éxito.' });
     }

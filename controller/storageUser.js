@@ -42,12 +42,16 @@ class ValidationsUser {
         'string.pattern.base': 'El número debe contener solo dígitos.',
         'any.required': 'El número es un campo obligatorio, verifica el campo numero.'
       }),
-      idBinance: Joi.string().length(9).pattern(/^\d+$/).required().messages({
+      idBinance: Joi.string().length(9).pattern(/^\d+$/).optional().messages({
         'string.length': 'El ID de Binance debe tener exactamente 9 dígitos.',
         'string.pattern.base': 'El ID de Binance debe contener solo dígitos.',
         'any.required': 'El ID de Binance es un campo obligatorio, verifica el campo idBinance.'
-      })
-    });
+      }),
+      walletUSDTBEP20: Joi.string().max(100).optional().messages({
+        'string.base': 'El campo walletUSDTBEP20 debe ser un texto.',
+        'string.max': 'El campo walletUSDTBEP20 no puede tener más de 100 caracteres.'
+      }),
+    }).or('idBinance', 'walletUSDTBEP20');
 
     static putPasswordUser = Joi.object({
       password: Joi.string().required().messages({
@@ -57,12 +61,16 @@ class ValidationsUser {
     });
 
     static putIdBinanceUser = Joi.object({
-      idBinance: Joi.string().length(9).pattern(/^\d+$/).required().messages({
+      idBinance: Joi.string().length(9).pattern(/^\d+$/).optional().messages({
         'string.length': 'El ID de Binance debe tener exactamente 9 dígitos.',
         'string.pattern.base': 'El ID de Binance debe contener solo dígitos.',
         'any.required': 'El ID de Binance es un campo obligatorio, verifica el campo idBinance.'
+      }),
+      walletUSDTBEP20: Joi.string().max(100).optional().messages({
+        'string.base': 'El campo walletUSDTBEP20 debe ser un texto.',
+        'string.max': 'El campo walletUSDTBEP20 no puede tener más de 100 caracteres.'
       })
-    });
+    }).or('idBinance', 'walletUSDTBEP20');
 
     static putDataUserFeeAccount = Joi.object({
       idTradingAccount: Joi.string().length(8).pattern(/^\d+$/).required().messages({
