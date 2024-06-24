@@ -12,6 +12,8 @@ const config = {
 
 const corsOptions = {
   origin: `http://${process.env.HOST_FRONTEND}:${process.env.PORT_FRONTEND}`,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept-version'],
 };
 
 const app = express();

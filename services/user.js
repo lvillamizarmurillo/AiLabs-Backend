@@ -18,12 +18,36 @@ export default class User{
         res.status(200).send({ status: 200, message: result });
     }
 
+    static async getInfoHomeUser(req,res){
+        if (!req.rateLimit) return;
+
+        let tokenUser = req.headers['authorization'].slice(7);
+
+        let result = await verifyToken(req,tokenUser);
+
+        let data = await tradingAccount.findOne({ email: result.email })
+
+        res.status(200).send({ status: 200, message: data });
+    }
+
+    static async getWalletUser(req,res){
+        if (!req.rateLimit) return;
+
+        let tokenUser = req.headers['authorization'].slice(7);
+
+        let result = await verifyToken(req,tokenUser);
+
+        let data = await wallet.findOne({ email: result.email })
+
+        res.status(200).send({ status: 200, message: data });
+    }
+
     static async getLinkReferir(req,res){
         if (!req.rateLimit) return;
 
         let tokenUser = req.headers['authorization'].slice(7);
 
-        res.status(200).send({ status: 200, message: `http://${process.env.HOST}:${process.env.PORT_FRONTEND}/ai-labs/registro/${tokenUser}` });
+        res.status(200).send({ status: 200, message: tokenUser });
     }
 
     static async postUser(req,res){
