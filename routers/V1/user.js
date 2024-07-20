@@ -13,7 +13,10 @@ router.get("/", version({
     '1.0.0': User.getUser,
     '1.0.1': User.getLinkReferir,
     '1.0.2': User.getInfoHomeUser,
-    '1.0.3': User.getWalletUser
+    '1.0.3': User.getWalletUser,
+    '1.0.4': User.getinfoUserProfile,
+    '1.0.5': User.getFeeAccount,
+    '1.0.6': User.getLevelsUsers
 }));
 
 router.post("/", version({

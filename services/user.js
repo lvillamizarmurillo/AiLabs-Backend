@@ -42,6 +42,116 @@ export default class User{
         res.status(200).send({ status: 200, message: data });
     }
 
+    static async getFeeAccount(req,res){
+        if (!req.rateLimit) return;
+
+        let tokenUser = req.headers['authorization'].slice(7);
+
+        let result = await verifyToken(req,tokenUser);
+
+        let data = await tradingAccount.aggregate([
+            {
+                $match: {email: result.email}
+            },
+            {
+                $project: {
+                    _id: 0,
+                    idTradingAccount: 1,
+                    idSuscription: 1
+                }
+            }
+        ]).toArray();
+
+        res.status(200).send({ status: 200, message: data });
+    }
+
+    static async getLevelsUsers(req, res) {
+        if (!req.rateLimit) return;
+    
+        let consulta = { nivelUno: [], nivelDos: [], nivelTres: [] };
+    
+        try {
+            let tokenUser = req.headers['authorization'].slice(7);
+            let result = await verifyToken(req, tokenUser);
+    
+            // Nivel 1
+            let nivelUno = await user.find({ emailReferido: result.email }).toArray();
+            consulta.nivelUno = nivelUno;
+    
+            // Extraer emails de nivel 1 para buscar nivel 2
+            let emailsNivelUno = nivelUno.map(user => user.email);
+    
+            // Nivel 2
+            let nivelDos = await user.find({ emailReferido: { $in: emailsNivelUno } }).toArray();
+            consulta.nivelDos = nivelDos;
+    
+            // Extraer emails de nivel 2 para buscar nivel 3
+            let emailsNivelDos = nivelDos.map(user => user.email);
+    
+            // Nivel 3
+            let nivelTres = await user.find({ emailReferido: { $in: emailsNivelDos } }).toArray();
+            consulta.nivelTres = nivelTres;
+    
+            res.status(200).send({ status: 200, message: consulta });
+        } catch (error) {
+            res.status(500).send({ status: 500, message: error.message });
+        }
+    }
+
+    static async getinfoUserProfile(req, res) {
+        try {
+            if (!req.rateLimit) return res.status(429).send({ status: 429, message: 'Rate limit exceeded' });
+    
+            let tokenUser = req.headers['authorization'].slice(7);
+    
+            let result = await verifyToken(req, tokenUser);
+    
+            // Realizar el lookup en la colección de perfiles
+            let data = await user.aggregate([
+                {
+                    $match: {
+                        email: result.email // Filtrar por el email obtenido del token
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'users', // Nombre de la colección a hacer el lookup
+                        localField: 'emailReferido',
+                        foreignField: 'email',
+                        as: 'userDataRefer'
+                    }
+                },
+                {
+                    $unwind: '$userDataRefer' // Deshacer el array resultante del lookup
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        username: 1,
+                        nombres: 1,
+                        apellidos: 1,
+                        email: {
+                            $concat: [
+                                { $substr: ["$email", 0, 2] }, // Tomar los primeros 2 caracteres del email
+                                "****@gmail.com" // Sustituir el resto del email con asteriscos y el dominio
+                            ]
+                        },
+                        numero: 1,
+                        userDataRefer: {
+                            username: 1
+                        }
+                    }
+                }
+            ]).toArray();
+    
+            res.status(200).send({ status: 200, message: data });
+    
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ status: 500, message: 'Internal server error' });
+        }
+    }
+
     static async getLinkReferir(req,res){
         if (!req.rateLimit) return;
 
@@ -115,7 +225,9 @@ export default class User{
 
         if (error) return res.status(400).send({ status: 400, message: error.details.map(err => err.message).join(' ') });
 
-        await tradingAccount.updateOne({ email:result.email }, {$set: { status: "activo", idTradingAccount:  dataPostUser.idTradingAccount, idSuscription: dataPostUser.idSuscription }});
+        await tradingAccount.updateOne({ email:result.email }, {$set: { idTradingAccount:  dataPostUser.idTradingAccount, idSuscription: dataPostUser.idSuscription }});
+
+        await user.updateOne({ email:result.email }, {$set: { status:  "activo" }});
 
         res.status(200).json({ status: 200, message: 'Usuario activo con éxito.' });
     }
