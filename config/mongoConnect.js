@@ -18,6 +18,7 @@ class Database {
         }
         return this.client.db();
     }
+    
 }
 
 export const collectionGen = async (collectionName) => {
