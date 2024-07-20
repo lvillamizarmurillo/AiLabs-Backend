@@ -16,7 +16,7 @@ class Database {
         if (!this.client.isConnected) {
             await this.client.connect();
         }
-        return this.client.db('aiLabs');
+        return this.client.db();
     }
 }
 
